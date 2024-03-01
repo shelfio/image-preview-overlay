@@ -26,8 +26,8 @@
     "coverage": "yarn test --coverage",
     "lint": "yarn lint:ci --fix",
     "lint:ci": "eslint . --ext .js,.ts,.tsx,.json",
-    "size": "size-limit",
     "prepack": "yarn build",
+    "size": "size-limit",
     "test": "TZ=UTC jest src",
     "type-check": "tsc --noEmit"
   },
