@@ -1,6 +1,6 @@
 import {fireEvent, render, screen} from '@testing-library/react';
+import type {ImagePreviewOverlayProps} from '../types';
 import {ImagePreviewOverlay} from './ImagePreviewOverlay';
-import {ImagePreviewOverlayProps} from '../types';
 
 const TestChildComponent = () => (
   <>
@@ -26,14 +26,18 @@ const renderImagePreviewOverlay = (props?: Partial<ImagePreviewOverlayProps>) =>
 describe('<ImagePreviewOverlay />', () => {
   it('should render children', () => {
     renderImagePreviewOverlay();
+
     expect(screen.getByText('Test text')).toBeVisible();
   });
+
   it('should open images on click and close on click / escape', () => {
     renderImagePreviewOverlay();
+
     expect(screen.queryByTestId('fullview-image')).not.toBeInTheDocument();
 
     const openImage = () => {
       fireEvent.mouseUp(screen.getByAltText('nested alt'));
+
       expect(screen.getAllByAltText('nested alt')).toHaveLength(2);
       expect(screen.getByTestId('fullview-image')).toBeVisible();
     };
@@ -41,13 +45,16 @@ describe('<ImagePreviewOverlay />', () => {
     openImage();
     //close on click
     fireEvent.click(screen.getByTestId('fullview-image'));
+
     expect(screen.queryByTestId('fullview-image')).not.toBeInTheDocument();
 
     openImage();
     //close on escape
     fireEvent.keyDown(window, {key: 'Escape'});
+
     expect(screen.queryByTestId('fullview-image')).not.toBeInTheDocument();
   });
+
   it('should use getImages if passed', () => {
     renderImagePreviewOverlay({
       getImages: () => [
@@ -59,18 +66,22 @@ describe('<ImagePreviewOverlay />', () => {
     });
 
     fireEvent.mouseUp(screen.getByAltText('test alt'));
+
     expect(screen.getByAltText('custom alt')).toBeVisible();
     expect(screen.getAllByAltText('test alt')).toHaveLength(1);
   });
+
   it('should render close icon and no arrow icons if one image', () => {
     renderImagePreviewOverlay();
 
     fireEvent.mouseUp(screen.getByAltText('nested alt'));
+
     expect(screen.getByTestId('fullview-image')).toBeVisible();
     expect(screen.getByTestId('close-icon')).toBeVisible();
     expect(screen.queryByTestId('left-icon')).not.toBeInTheDocument();
     expect(screen.queryByTestId('right-icon')).not.toBeInTheDocument();
   });
+
   it('should render arrow icons and change images using arrows if more than 1 image', () => {
     renderImagePreviewOverlay({
       getImages: () => [
@@ -90,15 +101,18 @@ describe('<ImagePreviewOverlay />', () => {
     });
 
     fireEvent.mouseUp(screen.getByAltText('test alt'));
+
     expect(screen.getByAltText('custom alt 3')).toBeVisible();
 
     const leftIcon = screen.getByTestId('left-icon');
     const rightIcon = screen.getByTestId('right-icon');
+
     expect(leftIcon).toBeVisible();
     expect(rightIcon).toBeVisible();
 
     const move = ({isRight, expectAlt}: {isRight?: boolean; expectAlt: string}) => {
       fireEvent.click(isRight ? rightIcon : leftIcon);
+
       expect(screen.getByAltText(expectAlt)).toBeVisible();
     };
 
@@ -111,8 +125,11 @@ describe('<ImagePreviewOverlay />', () => {
     move({expectAlt: 'custom alt 3'});
 
     fireEvent.keyDown(window, {key: 'ArrowRight'});
+
     expect(screen.getByAltText('custom alt 2')).toBeVisible();
+
     fireEvent.keyDown(window, {key: 'ArrowLeft'});
+
     expect(screen.getByAltText('custom alt 3')).toBeVisible();
   });
 });
