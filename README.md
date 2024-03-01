@@ -1,6 +1,8 @@
 ## Install
 
+Note: uses styled-components
 ```
+$ yarn add styled-components
 $ yarn add @shelf/image-preview-overlay
 ```
 
