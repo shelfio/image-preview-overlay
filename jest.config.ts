@@ -26,10 +26,10 @@ const config: Config = {
   testEnvironment: 'jsdom',
   coverageThreshold: {
     global: {
-      branches: 95,
+      branches: 96,
       functions: 100,
       lines: 100,
-      statements: 94.11,
+      statements: 95.08,
     },
   },
 };
