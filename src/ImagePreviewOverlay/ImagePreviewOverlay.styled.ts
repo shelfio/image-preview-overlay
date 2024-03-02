@@ -22,6 +22,7 @@ export const Image = styled.img`
   width: 90%;
   height: 90%;
   object-fit: contain;
+  cursor: zoom-out;
 `;
 
 export const baseIcon = styled.div`
@@ -53,4 +54,10 @@ export const ArrowIcon = styled(baseIcon)<{$isLeft?: boolean}>`
   width: 5%;
   height: 100px;
   transform: translateY(-50%);
+`;
+
+export const Trigger = styled.div`
+  & img {
+    cursor: zoom-in;
+  }
 `;

@@ -3,7 +3,7 @@ import {Hotkey} from '@shelf/hotkeys';
 import {useState} from 'react';
 import type {ElementMouseEvent, ImagePreviewOverlayProps, ImageProp} from '../types';
 import {defaultgetImages} from './ImagePreviewOverlay.utils';
-import {ArrowIcon, CloseIcon, Image, Overlay, Wrapper} from './ImagePreviewOverlay.styled';
+import {ArrowIcon, CloseIcon, Image, Overlay, Trigger, Wrapper} from './ImagePreviewOverlay.styled';
 
 export const ImagePreviewOverlay = ({
   children,
@@ -86,9 +86,9 @@ export const ImagePreviewOverlay = ({
 
   return (
     <>
-      <div {...triggerProps} onMouseUp={handleMouseUp}>
+      <Trigger {...triggerProps} onMouseUp={handleMouseUp}>
         {children}
-      </div>
+      </Trigger>
       {imageToRender && renderPreview(imageToRender)}
     </>
   );
