@@ -1,5 +1,6 @@
 ## Installation
 Note: uses styled-components
+
 Install the library using npm:
 
 ```shell
