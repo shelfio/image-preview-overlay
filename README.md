@@ -5,6 +5,8 @@ Install the library using npm:
 
 ```shell
 $ npm install styled-components
+```
+```shell
 $ npm install @shelf/image-preview-overlay
 ```
 
@@ -12,6 +14,8 @@ Install the library using yarn:
 
 ```shell
 $ yarn add styled-components
+```
+```shell
 $ yarn add @shelf/image-preview-overlay
 ```
 
