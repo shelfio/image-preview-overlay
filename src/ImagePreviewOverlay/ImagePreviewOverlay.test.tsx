@@ -10,6 +10,8 @@ const TestChildComponent = () => (
         <p>
           Test text
           <img src="nested-src" alt="nested alt" />
+          <img src="nested-src-2" alt="nested alt 2" />
+          <img src="nested-src-3" alt="nested alt 3" />
         </p>
       </span>
     </div>
@@ -131,5 +133,30 @@ describe('<ImagePreviewOverlay />', () => {
     fireEvent.keyDown(window, {key: 'ArrowLeft'});
 
     expect(screen.getByAltText('custom alt 3')).toBeVisible();
+  });
+
+  it('should start preview from target image', () => {
+    renderImagePreviewOverlay({
+      getImages: () => [
+        {
+          src: 'http://localhost/nested-src',
+          alt: 'nested alt',
+        },
+        {
+          src: 'http://localhost/nested-src-2',
+          alt: 'nested alt 2',
+        },
+        {
+          src: 'http://localhost/nested-src-3',
+          alt: 'nested alt 3',
+        },
+      ],
+      startPreviewFromTargetImage: true,
+    });
+
+    fireEvent.mouseUp(screen.getByAltText('nested alt 3'));
+
+    expect(screen.getByTestId('fullview-image')).toBeVisible();
+    expect(screen.getAllByAltText('nested alt 3')).toHaveLength(2);
   });
 });

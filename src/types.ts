@@ -7,6 +7,7 @@ export type ElementMouseEvent = MouseEvent<HTMLElement>;
 export type ImagePreviewOverlayProps = {
   children: React.ReactNode;
   getImages?: (event: ElementMouseEvent) => ImageProp[] | undefined;
+  startPreviewFromTargetImage?: boolean;
   triggerProps?: Omit<React.HTMLAttributes<HTMLDivElement>, 'onMouseUp'>;
   portalWrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   imageOverlayProps?: React.HTMLAttributes<HTMLDivElement>;

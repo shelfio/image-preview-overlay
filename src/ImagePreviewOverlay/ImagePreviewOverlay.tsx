@@ -2,12 +2,13 @@ import ReactDOM from 'react-dom';
 import {Hotkey} from '@shelf/hotkeys';
 import {useState} from 'react';
 import type {ElementMouseEvent, ImagePreviewOverlayProps, ImageProp} from '../types';
-import {defaultgetImages} from './ImagePreviewOverlay.utils';
-import {ArrowIcon, CloseIcon, Image, Overlay, Wrapper} from './ImagePreviewOverlay.styled';
+import {defaultGetImages, getImageIndex} from './ImagePreviewOverlay.utils';
+import {ArrowIcon, CloseIcon, Image, Overlay, Trigger, Wrapper} from './ImagePreviewOverlay.styled';
 
 export const ImagePreviewOverlay = ({
   children,
-  getImages = defaultgetImages,
+  getImages = defaultGetImages,
+  startPreviewFromTargetImage,
   triggerProps,
   portalWrapperProps,
   imageOverlayProps,
@@ -16,9 +17,9 @@ export const ImagePreviewOverlay = ({
   const [images, setImages] = useState<ImageProp[] | null>(null);
   const [currentImage, setCurrentImage] = useState<number | null>(null);
 
-  const setInitialPreview = (images: ImageProp[]) => {
+  const setInitialPreview = (images: ImageProp[], index: number) => {
     setImages(images);
-    setCurrentImage(0);
+    setCurrentImage(index);
   };
 
   const handleClose = () => {
@@ -27,11 +28,12 @@ export const ImagePreviewOverlay = ({
   };
 
   const handleMouseUp = (event: ElementMouseEvent) => {
-    const imagesProps = getImages(event);
+    const images = getImages(event);
 
-    if (!imagesProps?.length) return;
+    if (!images?.length) return;
 
-    setInitialPreview(imagesProps);
+    const index = getImageIndex({event, images, startPreviewFromTargetImage});
+    setInitialPreview(images, index);
   };
 
   const handleMoveRight = () => {
@@ -86,9 +88,9 @@ export const ImagePreviewOverlay = ({
 
   return (
     <>
-      <div {...triggerProps} onMouseUp={handleMouseUp}>
+      <Trigger {...triggerProps} onMouseUp={handleMouseUp}>
         {children}
-      </div>
+      </Trigger>
       {imageToRender && renderPreview(imageToRender)}
     </>
   );
