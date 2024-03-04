@@ -1,6 +1,6 @@
 {
   "name": "@shelf/image-preview-overlay",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Plain wrapper that renders full image preview on child image tag click",
   "keywords": [
     "image",
