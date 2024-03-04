@@ -15,7 +15,7 @@ $ yarn add styled-components
 $ yarn add @shelf/image-preview-overlay
 ```
 
-#### Props
+## Props
 
 **getImages**
 Type: `function (optional)`
@@ -25,6 +25,7 @@ A function that can be used to modify preview images list
 (event: ElementMouseEvent) => {src: string; alt?: string}[] | undefined;
 ```
 
+
 **startPreviewFromTargetImage**
 Type: `boolean (optional)`
 
@@ -32,17 +33,20 @@ Default false. Always opens first image from the list.
 
 If set to true - will try to open the target image (if it is present in the list returned by getImages)
 
+
 **triggerProps**, **portalWrapperProps**, **imageOverlayProps**
 
 Type: `HTMLAttributes<HTMLDivElement> (optional)`
 
 HTML attributes passed to corresponding elements
 
+
 **imageProps**
 
 Type: `HTMLAttributes<HTMLImageElement> (optional)`
 
 HTML attributes passed to fullview image element
+
 
 ## Usage
 
