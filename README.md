@@ -24,6 +24,7 @@ $ yarn add @shelf/image-preview-overlay
 | Prop Name | Type | Description|
 |-----------|------|------------|
 | getImages | `function (optional)`| A function that can be used to modify preview images list. Signature: `(event: ElementMouseEvent) => {src: string; alt?: string}[] \| undefined`|
+| getInitialPreviewImageIndex | `function (optional)` | A function to customly choose the initial image from the list to be shown when fullview is opened |
 | startPreviewFromTargetImage | `boolean (optional)`| Default false (always opens first image from the list). If set to true - will try to open the target image (if it is present in the list returned by getImages) |
 | triggerProps, portalWrapperProps, imageOverlayProps | `HTMLAttributes<HTMLDivElement> (optional)` | HTML attributes passed to the corresponding elements |  
 | imageProps | `HTMLAttributes<HTMLImageElement> (optional)` | HTML attributes passed to the fullview image element |
