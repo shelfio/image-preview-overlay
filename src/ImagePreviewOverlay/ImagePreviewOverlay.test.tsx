@@ -177,7 +177,7 @@ describe('<ImagePreviewOverlay />', () => {
         },
       ],
       startPreviewFromTargetImage: true,
-      getOpenedImageIndex: () => 2,
+      getInitialPreviewImageIndex: () => 2,
     });
 
     fireEvent.mouseUp(screen.getByAltText('nested alt 2'));
