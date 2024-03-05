@@ -2,12 +2,13 @@ import ReactDOM from 'react-dom';
 import {Hotkey} from '@shelf/hotkeys';
 import {useState} from 'react';
 import type {ElementMouseEvent, ImagePreviewOverlayProps, ImageProp} from '../types';
-import {defaultGetImages, getImageIndex} from './ImagePreviewOverlay.utils';
+import {defaultGetImageIndex, defaultGetImages} from './ImagePreviewOverlay.utils';
 import {ArrowIcon, CloseIcon, Image, Overlay, Trigger, Wrapper} from './ImagePreviewOverlay.styled';
 
 export const ImagePreviewOverlay = ({
   children,
   getImages = defaultGetImages,
+  getInitialPreviewImageIndex = defaultGetImageIndex,
   startPreviewFromTargetImage,
   triggerProps,
   portalWrapperProps,
@@ -32,7 +33,7 @@ export const ImagePreviewOverlay = ({
 
     if (!images?.length) return;
 
-    const index = getImageIndex({event, images, startPreviewFromTargetImage});
+    const index = getInitialPreviewImageIndex({event, images, startPreviewFromTargetImage});
     setInitialPreview(images, index);
   };
 

@@ -1,4 +1,4 @@
-import {defaultGetImages, getImageIndex} from './ImagePreviewOverlay.utils';
+import {defaultGetImageIndex, defaultGetImages} from './ImagePreviewOverlay.utils';
 
 const testImage = new Image();
 testImage.src = 'http://localhost/test2.png';
@@ -24,20 +24,20 @@ describe('#defaultGetImages', () => {
   });
 });
 
-describe('#getImageIndex', () => {
+describe('#defaultGetImageIndex', () => {
   it('should return 0 if startPreviewFromTargetImage is falsy', () => {
-    expect(getImageIndex({images, event: {target: testImage}})).toEqual(0);
+    expect(defaultGetImageIndex({images, event: {target: testImage}})).toEqual(0);
   });
 
   it('should return index if startPreviewFromTargetImage is falsy', () => {
     expect(
-      getImageIndex({images, event: {target: testImage}, startPreviewFromTargetImage: true})
+      defaultGetImageIndex({images, event: {target: testImage}, startPreviewFromTargetImage: true})
     ).toEqual(1);
   });
 
   it('should return 0 if target is not HTMLImageElement', () => {
     expect(
-      getImageIndex({images, event: {target: divElement}, startPreviewFromTargetImage: true})
+      defaultGetImageIndex({images, event: {target: divElement}, startPreviewFromTargetImage: true})
     ).toEqual(0);
   });
 
@@ -46,7 +46,7 @@ describe('#getImageIndex', () => {
     testImage.src = 'http://localhost/does-not-exist.png';
 
     expect(
-      getImageIndex({images, event: {target: testImage}, startPreviewFromTargetImage: true})
+      defaultGetImageIndex({images, event: {target: testImage}, startPreviewFromTargetImage: true})
     ).toEqual(0);
   });
 });

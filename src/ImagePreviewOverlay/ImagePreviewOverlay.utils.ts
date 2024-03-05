@@ -11,7 +11,7 @@ export const defaultGetImages = (event: ElementMouseEvent) => {
   }
 };
 
-export const getImageIndex = ({
+export const defaultGetImageIndex = ({
   images,
   event,
   startPreviewFromTargetImage,

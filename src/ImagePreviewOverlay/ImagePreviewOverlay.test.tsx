@@ -159,4 +159,30 @@ describe('<ImagePreviewOverlay />', () => {
     expect(screen.getByTestId('fullview-image')).toBeVisible();
     expect(screen.getAllByAltText('nested alt 3')).toHaveLength(2);
   });
+
+  it('should set custom index if getOpenedImageIndex is passed', () => {
+    renderImagePreviewOverlay({
+      getImages: () => [
+        {
+          src: 'http://localhost/nested-src',
+          alt: 'nested alt',
+        },
+        {
+          src: 'http://localhost/nested-src-2',
+          alt: 'nested alt 2',
+        },
+        {
+          src: 'http://localhost/nested-src-3',
+          alt: 'nested alt 3',
+        },
+      ],
+      startPreviewFromTargetImage: true,
+      getOpenedImageIndex: () => 2,
+    });
+
+    fireEvent.mouseUp(screen.getByAltText('nested alt 2'));
+
+    expect(screen.getByTestId('fullview-image')).toBeVisible();
+    expect(screen.getAllByAltText('nested alt 3')).toHaveLength(2);
+  });
 });
