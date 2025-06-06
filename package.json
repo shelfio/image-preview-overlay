@@ -66,7 +66,7 @@
     "styled-components": "6.1.18",
     "ts-jest-resolver": "2.0.1",
     "ts-node": "10.9.2",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "peerDependencies": {
     "react": "18.x.x || 19.x",
