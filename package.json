@@ -31,11 +31,6 @@
     "test": "TZ=UTC jest src",
     "type-check": "tsc --noEmit"
   },
-  "lint-staged": {
-    "*.{html,md,yml}": "prettier --write",
-    "*.{ts,js,json,tsx,jsx}": "eslint --fix",
-    ".circleci/config.yml": ".husky/validate-circleci-config.sh"
-  },
   "prettier": "@shelf/prettier-config",
   "dependencies": {
     "@shelf/hotkeys": "1.1.0"
@@ -78,5 +73,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "lint-staged": {
+    "*.{html,md,yml}": "prettier --write",
+    "*.{ts,js,json,tsx,jsx}": "eslint --fix"
   }
 }
